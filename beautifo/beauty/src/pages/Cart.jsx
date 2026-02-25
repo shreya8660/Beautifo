@@ -4,7 +4,7 @@ export default function Cart() {
   const { cart, removeFromCart, totalPrice } = useCart();
 
   return (
-    <section className="bg-sectionBg min-h-screen py-16 px-6">
+    <section className="bg-sectionBg min-h-screen py-28 px-6">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-serif text-headingDark mb-10">
           My Cart
@@ -52,8 +52,8 @@ export default function Cart() {
                 Total: ${totalPrice.toFixed(2)}
               </h2>
 
-              <button className="mt-4 bg-buttonPink text-white px-8 py-3 rounded-full hover:opacity-90 transition">
-                Checkout
+              <button className="mt-4 bg-buttonPink hover:bg-[white] text-white hover:text-[#F06A6A] px-8 py-3 rounded-full hover:opacity-90 transition">
+                Buy now
               </button>
             </div>
           </>

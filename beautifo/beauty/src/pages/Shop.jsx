@@ -13,7 +13,7 @@ export default function Shop() {
  
 
   return (
-    <section className="bg-sectionBg min-h-screen py-16 px-6">
+    <section className="bg-sectionBg min-h-screen py-28 px-6">
       <div className="max-w-7xl mx-auto">
 
         <h1 className="text-4xl font-serif text-headingDark mb-12 text-center">

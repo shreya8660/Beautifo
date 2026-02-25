@@ -1,106 +1,222 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-  const [username, setUsername] = useState("Nella");
-  const [address, setAddress] = useState("Bangalore, India");
+  const navigate = useNavigate();
+
+  const [activeTab, setActiveTab] = useState("user");
   const [editing, setEditing] = useState(false);
 
+  const [username, setUsername] = useState("Nella");
+  const [email, setEmail] = useState("nella@gmail.com");
+  const [phone, setPhone] = useState("+91 9876543210");
+  const [city, setCity] = useState("Bangalore");
+
+  const [filter, setFilter] = useState("all");
+
+  const orders = [
+    { id: 1, total: 2000, status: "Processing" },
+    { id: 2, total: 5000, status: "Done" },
+    { id: 3, total: 350, status: "Canceled" },
+  ];
+
+  const viewHistory = [
+    { id: 1, name: "Organic Serum" },
+    { id: 2, name: "Lip Gloss" },
+    { id: 3, name: "Face Mask" },
+  ];
+
+  const filteredOrders =
+    filter === "all"
+      ? orders
+      : orders.filter((order) => order.status === filter);
+
+  const handleLogout = () => {
+    navigate("/auth");
+  };
+
   return (
-    <section className="bg-sectionBg min-h-screen py-16 px-6">
-      <div className="max-w-6xl mx-auto bg-blushCard rounded-3xl shadow-md p-10 grid grid-cols-4 gap-10">
+    <section className="bg-sectionBg min-h-screen py-28 px-6">
+      <div className="max-w-6xl mx-auto bg-blushCard rounded-3xl shadow-md p-10">
 
-        {/* LEFT SIDEBAR */}
-        <div className="col-span-1 space-y-6">
+        {/* HEADER */}
+        <h1 className="text-3xl font-serif text-headingDark mb-8">
+          Profile
+        </h1>
 
-          {/* Profile Pic */}
-          <div className="text-center">
-            <img
-              src="https://i.pravatar.cc/150"
-              alt=""
-              className="w-28 h-28 rounded-full mx-auto object-cover border-4 border-white shadow"
-            />
-            <button className="text-sm text-buttonPink mt-3 hover:underline">
-              Change Profile Pic
-            </button>
-          </div>
+        {/* TABS */}
+        <div className="flex gap-6 mb-10">
+          <button
+            onClick={() => setActiveTab("user")}
+            className={`px-5 py-2 rounded-full text-sm ${
+              activeTab === "user"
+                ? "bg-buttonPink text-white"
+                : "bg-white text-textMuted"
+            }`}
+          >
+            User Data
+          </button>
 
-          {/* Sidebar Menu */}
-          <div className="space-y-4 text-textMuted">
-            <button className="block w-full text-left hover:text-buttonPink transition">
-              Edit Profile
-            </button>
-            <button className="block w-full text-left hover:text-buttonPink transition">
-              My Orders
-            </button>
-            <button className="block w-full text-left hover:text-buttonPink transition">
-              Add Address
-            </button>
-            <button className="block w-full text-left hover:text-buttonPink transition">
-              Add Another Account
-            </button>
-          </div>
+          <button
+            onClick={() => setActiveTab("orders")}
+            className={`px-5 py-2 rounded-full text-sm ${
+              activeTab === "orders"
+                ? "bg-buttonPink text-white"
+                : "bg-white text-textMuted"
+            }`}
+          >
+            Order History
+          </button>
 
+          <button
+            onClick={() => setActiveTab("view")}
+            className={`px-5 py-2 rounded-full text-sm ${
+              activeTab === "view"
+                ? "bg-buttonPink text-white"
+                : "bg-white text-textMuted"
+            }`}
+          >
+            View History
+          </button>
         </div>
 
-        {/* RIGHT CONTENT */}
-        <div className="col-span-3 bg-white rounded-2xl p-8">
+        {/* ================= USER DATA ================= */}
+        {activeTab === "user" && (
+          <div className="bg-white rounded-2xl p-8 space-y-6">
 
-          <h2 className="text-2xl font-serif text-headingDark mb-6">
-            My Profile
-          </h2>
+            {/* Username */}
+            <div>
+              <label className="block text-sm text-textMuted mb-1">
+                Username
+              </label>
+              {editing ? (
+                <input
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="w-full px-4 py-2 bg-newsletterInput rounded-xl outline-none"
+                />
+              ) : (
+                <p className="text-headingDark">{username}</p>
+              )}
+            </div>
 
-          {/* Username */}
-          <div className="mb-6">
-            <label className="block text-sm text-textMuted mb-2">
-              Username
-            </label>
+            {/* Email */}
+            <div>
+              <label className="block text-sm text-textMuted mb-1">
+                Email
+              </label>
+              {editing ? (
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-4 py-2 bg-newsletterInput rounded-xl outline-none"
+                />
+              ) : (
+                <p className="text-headingDark">{email}</p>
+              )}
+            </div>
 
-            {editing ? (
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-newsletterInput outline-none"
-              />
-            ) : (
-              <p className="text-lg text-headingDark">{username}</p>
-            )}
+            {/* Phone */}
+            <div>
+              <label className="block text-sm text-textMuted mb-1">
+                Phone
+              </label>
+              {editing ? (
+                <input
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="w-full px-4 py-2 bg-newsletterInput rounded-xl outline-none"
+                />
+              ) : (
+                <p className="text-headingDark">{phone}</p>
+              )}
+            </div>
+
+            {/* City */}
+            <div>
+              <label className="block text-sm text-textMuted mb-1">
+                City
+              </label>
+              {editing ? (
+                <input
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  className="w-full px-4 py-2 bg-newsletterInput rounded-xl outline-none"
+                />
+              ) : (
+                <p className="text-headingDark">{city}</p>
+              )}
+            </div>
+
+            <div className="flex gap-4 pt-4">
+              <button
+                onClick={() => setEditing(!editing)}
+                className="bg-buttonPink text-white px-6 py-2 rounded-full hover:opacity-90 transition"
+              >
+                {editing ? "Save Changes" : "Edit"}
+              </button>
+
+              <button
+                onClick={handleLogout}
+                className="border border-offerRed text-offerRed px-6 py-2 rounded-full hover:bg-offerRed hover:text-white transition"
+              >
+                Logout
+              </button>
+            </div>
           </div>
+        )}
 
-          {/* Address */}
-          <div className="mb-6">
-            <label className="block text-sm text-textMuted mb-2">
-              Address
-            </label>
+        {/* ================= ORDER HISTORY ================= */}
+        {activeTab === "orders" && (
+          <div className="bg-white rounded-2xl p-8">
 
-            {editing ? (
-              <input
-                type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-newsletterInput outline-none"
-              />
-            ) : (
-              <p className="text-lg text-headingDark">{address}</p>
-            )}
+            {/* FILTER */}
+            <div className="mb-6">
+              <select
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+                className="px-4 py-2 rounded-xl bg-newsletterInput outline-none"
+              >
+                <option value="all">All</option>
+                <option value="Processing">Processing</option>
+                <option value="Done">Done</option>
+                <option value="Canceled">Canceled</option>
+              </select>
+            </div>
+
+            <div className="space-y-4">
+              {filteredOrders.map((order) => (
+                <div
+                  key={order.id}
+                  className="p-6 rounded-xl bg-sectionBg flex justify-between"
+                >
+                  <div>
+                    <p className="text-headingDark font-semibold">
+                      ₹ {order.total}
+                    </p>
+                    <p className="text-textMuted text-sm">
+                      Status: {order.status}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
+        )}
 
-          {/* Buttons */}
-          <div className="flex gap-4">
-            <button
-              onClick={() => setEditing(!editing)}
-              className="bg-buttonPink text-white px-6 py-3 rounded-full hover:opacity-90 transition"
-            >
-              {editing ? "Save Changes" : "Edit Profile"}
-            </button>
-
-            <button className="border border-buttonPink text-buttonPink px-6 py-3 rounded-full hover:bg-buttonPink hover:text-white transition">
-              Change Address
-            </button>
+        {/* ================= VIEW HISTORY ================= */}
+        {activeTab === "view" && (
+          <div className="bg-white rounded-2xl p-8 space-y-4">
+            {viewHistory.map((item) => (
+              <div
+                key={item.id}
+                className="p-4 rounded-xl bg-sectionBg text-headingDark"
+              >
+                {item.name}
+              </div>
+            ))}
           </div>
-
-        </div>
-
+        )}
       </div>
     </section>
   );

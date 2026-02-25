@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Page() {
+   const navigate = useNavigate();
   return (
-    <section className="bg-sectionBg min-h-screen py-16 px-6">
+    <section className="bg-sectionBg min-h-screen py-28 px-6">
       <div className="max-w-6xl mx-auto space-y-16">
 
         {/* Header */}
@@ -56,7 +59,8 @@ export default function Page() {
 
         {/* CTA Section */}
         <div className="text-center">
-          <button className="bg-buttonPink text-white px-8 py-3 rounded-full hover:opacity-90 transition">
+          <button onClick={() => navigate("/shop")}
+           className="bg-buttonPink text-white px-8 py-3 rounded-full hover:opacity-90 transition">
             Explore Collection
           </button>
         </div>
