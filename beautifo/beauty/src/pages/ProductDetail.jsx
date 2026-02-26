@@ -15,12 +15,12 @@ export default function ProductDetail() {
   const [selectedImage, setSelectedImage] = useState(product.image);
   const [quantity, setQuantity] = useState(1);
 
-  /* ---------------- RELATED PRODUCTS ---------------- */
+ 
   const relatedProducts = products
     .filter((p) => p.id !== product.id)
     .slice(0, 4);
 
-  /* ---------------- ADD TO CART ---------------- */
+
   const handleAddToCart = () => {
     addToCart({ ...product, quantity });
   };
@@ -32,7 +32,7 @@ export default function ProductDetail() {
         {/* ================= PRODUCT SECTION ================= */}
         <div className="grid md:grid-cols-2 gap-12">
 
-          {/* IMAGE PREVIEW */}
+          
           <div>
             <img
               src={selectedImage}

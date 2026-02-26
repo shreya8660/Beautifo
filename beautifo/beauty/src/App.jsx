@@ -17,6 +17,8 @@ import Shop from './pages/Shop';
 import ProductDetail from "./pages/ProductDetail";
 import Favorite from "./pages/Favorite";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import TrackOrder from "./pages/TrackOrder";
 
 function Home() {
   return (
@@ -36,19 +38,25 @@ function Home() {
 function App() {
   return (
     <>
-      <Navbar classname="pt-20"/>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/blog" element={<Blog/>} />
-        <Route path="/page" element={<Page/>} />
-        <Route path="/contact" element={<Contact/>} />
-        <Route path="/auth" element={<Auth/>} />
-        <Route path="/shop" element={<Shop/>} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/favorites" element={<Favorite />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
+      <Navbar />
+
+      {/* Push content below fixed navbar */}
+      <main className="pt-20">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/page" element={<Page />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/favorites" element={<Favorite />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/track-order/:id" element={<TrackOrder />} />
+        </Routes>
+      </main>
     </>
   );
 }
