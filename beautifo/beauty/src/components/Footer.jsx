@@ -58,7 +58,7 @@ export default function Footer() {
       {/* MAIN FOOTER CONTENT (Single Row Compact) */}
       <div className="max-w-7xl mx-auto px-10 py-10 flex justify-between items-start">
 
-        {/* Brand */}
+        {/* Brand */}   
         <div className="max-w-xs">
           <h2 className="text-xl font-serif mb-3 text-textDark">
             BE<span className="text-[#F27C7C]">AUTIFO</span>
