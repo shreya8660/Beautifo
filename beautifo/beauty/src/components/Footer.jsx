@@ -49,7 +49,7 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-textDark">
               Free Standard Delivery
             </h4>
-            <p className="text-xs">On orders over $25</p>
+            <p className="text-xs">On orders over  $25</p>
           </div>
         </div>
 

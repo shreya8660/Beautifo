@@ -96,7 +96,7 @@ export default function TrackOrder() {
               />
             </div>
 
-            {/* Shipped */}
+            {/* Shipping */}
             <div className="flex flex-col items-center">
               <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                 step >= 2 ? "bg-buttonPink text-white" : "bg-gray-200"
@@ -139,7 +139,7 @@ export default function TrackOrder() {
 
         {order.status === "Canceled" && (
           <p className="text-offerRed font-semibold">
-            ❌ This order has been canceled.
+            This order has been canceled.
           </p>
         )}
 
